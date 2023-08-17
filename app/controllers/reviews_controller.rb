@@ -6,6 +6,12 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(rewiew_param)
+    @review.restaurant = @restaurant
+    if @review.save
+      redirect_to restaurant_path
+    else
+      render :new, status: unprocessable entity
+    end
   end
 
   private
